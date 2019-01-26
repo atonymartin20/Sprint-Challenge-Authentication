@@ -7,6 +7,19 @@ const jwtKey =
 // quickly see what this file exports
 module.exports = {
   authenticate,
+  generateToken
+};
+
+function generateToken(user) {
+  const payload = {
+      username: user.username,
+  };
+
+  const options = {
+      expiresIn: '10h',
+      jwtid: '7562248',
+  };
+  return jwt.sign(payload, jwtKey, options);
 };
 
 // implementation details
@@ -27,3 +40,4 @@ function authenticate(req, res, next) {
     });
   }
 }
+
