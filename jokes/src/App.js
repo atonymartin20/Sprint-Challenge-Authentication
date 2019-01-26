@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import './App.css';
+import SignIn from './SignIn/index.js';
+import SignUp from './SignUpPage/index.js';
+import Homepage from './Homepage/index.js';
+import Users from './Users/index.js';
 
 class App extends Component {
   render() {
