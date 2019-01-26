@@ -25,6 +25,21 @@ function register(req, res) {
 
 function login(req, res) {
   // implement user login
+  const credentials = req.body;
+  db.findByUsername(credentials.username)
+  .then(users => {
+      if (users && bcrypt.compareSync(credentials.password, users[0].password)) {
+          const token = generateToken(users)
+          res.status(200).json({ users, token });
+          
+      }
+      else {
+          res.status(404).json({ errorMessage: 'Invalid username or password.' });
+      }
+  })
+  .catch(err => {
+      res.status(500).json({ errorMessage: 'Failed to login.' });
+  });
 }
 
 function getJokes(req, res) {
