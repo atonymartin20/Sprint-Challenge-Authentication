@@ -11,6 +11,16 @@ module.exports = server => {
 
 function register(req, res) {
   // implement user registration
+  const user = req.body;
+  user.password = bcrypt.hashSync(user.password, 16);
+  const token = generateToken(user)
+  db.insert(user)
+    .then(ids => {
+        res.status(201).json({ id: ids[0], token });
+      })
+    .catch(err => {
+      res.status(500).json({ errorMessage: 'Failed to create new user.' });
+    });
 }
 
 function login(req, res) {
