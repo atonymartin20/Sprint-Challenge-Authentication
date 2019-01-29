@@ -35,11 +35,16 @@ class SignUp extends React.Component {
                     <label htmlFor='username'>Username: &nbsp;</label>
                     <input name='username' value={this.state.username} onChange={this.InputHandler} type='text' />
                 </div>
-
                 <div>
-                    
+                    <label htmlFor="password">Password: &nbsp;</label>
+                    <input name="password" value={this.state.password} onChange={this.InputHandler} type='text' />
+                </div>
+                <div>
+                    <button type='submit'>Register</button>
                 </div>
             </form>
         )
     }
 }
+
+export default SignUp;
