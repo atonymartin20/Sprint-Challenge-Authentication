@@ -7,6 +7,7 @@ module.exports = server => {
   server.post('/api/register', register);
   server.post('/api/login', login);
   server.get('/api/jokes', authenticate, getJokes);
+  server.get('/api/users', users);
 };
 
 function register(req, res) {
@@ -55,4 +56,14 @@ function getJokes(req, res) {
     .catch(err => {
       res.status(500).json({ message: 'Error Fetching Jokes', error: err });
     });
+}
+
+function users(req, res) {
+  db.get()
+  .then(users => {
+      res.status(200).json(users);
+  })
+  .catch(err => {
+      res.status(500).json({ errorMessage: 'Failed to get users.' });
+  });
 }
